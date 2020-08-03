@@ -71,7 +71,7 @@ const AliasAssign = () => {
     const scrapedInfo = await receivingData(alias, state);
     if (!scrapedInfo) {
       dispatch(receivedData());
-      console.log(state.requestingData);
+      //console.log(state.requestingData);
       return;
     } else {
       dispatch(setToRotation(scrapedInfo));
