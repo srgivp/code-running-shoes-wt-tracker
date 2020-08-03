@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const puppeteer = require("puppeteer");
-const fs = require("fs");
+//const fs = require("fs");
 
 const searcher = require("./server/find-alias");
 
@@ -59,7 +59,7 @@ app.use(function(req, res, next) {
 //with cookies in state
 const loggingIn = async (email, password, res) => {
   const browser = await puppeteer.launch({
-    headless: false,
+    //headless: false,
     args: ["--shm-size=1gb"]
   });
   const page = await browser.newPage();
