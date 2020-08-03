@@ -1,0 +1,44 @@
+*,
+//.row,
+[class^="col-"],
+[class*=" col-"] {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#setting-to-rotation,
+#login,
+#login-retire {
+  display: none;
+}
+[class^="col-"],
+[class*=" col-"] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.col-12 > .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 80%;
+}
+/*.btn {
+  background-color: rgb(231, 229, 227);
+  border: solid 0.5px rgb(179, 102, 179);
+}*/
+#rotation-page {
+  background-color: rgb(233, 227, 227);
+  form {
+    margin: 1% 1%;
+    label {
+      margin: 0 0.5% 0 1.5%;
+    }
+  }
+}
+
+.rotation-grid-container {
+  grid-template-columns: 40% 15% 15% 15% 15%;
+}

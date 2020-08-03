@@ -1,0 +1,124 @@
+$nav-background-color: rgb(79, 165, 245);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  background-color: rgb(244, 252, 244);
+  //padding-top: 5%;
+  position: relative;
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+}
+
+.btn {
+  margin: 0.1% 0.3%;
+  padding: 0 1%;
+  color: rgb(136, 130, 130);
+  //border: solid 0.3px grey;
+  //background-color: rgb(240, 238, 228);
+  &:hover {
+    background-color: rgb(185, 213, 236);
+  }
+}
+
+.flex-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.grid-container {
+  display: grid;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  background-color: #fff;
+  margin: 1% 0;
+  div {
+    height: fit-content;
+  }
+}
+
+.header {
+  text-transform: capitalize;
+  font-weight: bold;
+  line-height: 1.5;
+  background-color: $nav-background-color;
+  padding: 1% 0.3%;
+}
+.col-model {
+  p {
+    font-style: italic;
+    margin: 0;
+    text-transform: capitalize;
+    font-weight: bold;
+    font-family: Rockwell, "Courier Bold", Courier, Georgia, Times,
+      "Times New Roman", serif;
+    width: 100%;
+  }
+  .row {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .btn {
+    min-width: 30%;
+    max-width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+.section-container {
+  padding-bottom: 5%;
+  background-color: rgb(233, 227, 227);
+}
+
+.grid-caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5%;
+  padding-top: 0;
+  h3 {
+    width: 100%;
+    text-align: center;
+  }
+}
+#spinner {
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  margin: -24px 0 0 -30px;
+}
+#below-root {
+  position: relative;
+  background: url(./pictures/athletics-blue-ground-small.jpg) center;
+  opacity: 0.5;
+  background-size: cover;
+  flex: 1 1 auto;
+}
+#attribution {
+  color: #fff;
+  font-size: 90%;
+  //opacity: 0.5;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+}

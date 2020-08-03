@@ -1,0 +1,13 @@
+export const SET_TO_ROTATION = "SET_TO_ROTATION";
+export const DELETE_ITEM = "DELETE_ITEM";
+export const REQUESTING_DATA = "REQUESTING_DATA";
+export const RECEIVED_DATA = "RECEIVED_DATA";
+export const LOGIN = "LOGIN";
+export const RETIRE = "RETIRE";
+export const PUT_BACK = "PUT_BACK";
+export const ACTUALIZE = "ACTUALIZE";
+export const INITIAL_LOGIN = "INITIAL_LOGIN";
+export const CREATE_ACCOUNT = "CREATE_ACCOUNT";
+export const LOGOUT = "LOGOUT";
+export const DELETE_ACCOUNT = "DELETE_ACCOUNT";
+export const COOKIES = "COOKIES";
