@@ -11,7 +11,15 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:8080"); // update to match the domain you will make the request from
+  const permittedOrigins = [
+    "http://localhost:8080",
+    "https://srgivp.github.io/"
+  ];
+  const origin = req.headers.origin;
+  if (permittedOrigins.indexOf(origin) > -1) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
+  //res.header("Access-Control-Allow-Origin", "http://localhost:8080"); // update to match the domain you will make the request from
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
