@@ -151,7 +151,12 @@ const initialInfoCollecting = async (inAlias, cookies) => {
     const cookiesArr = JSON.parse(cookies);
     if (cookiesArr.length !== 0) {
       for (let cookie of cookiesArr) {
-        await page.setCookie({ ...cookie, SameSite: "none", Secure: true });
+        let correctedCookie = {
+          ...cookie,
+          ...{ sameSite: "none" /*, secure: true */ }
+        };
+        console.log("corrCookie: ", correctedCookie);
+        await page.setCookie(correctedCookie);
       }
       console.log("Session has been loaded in the browser");
     }

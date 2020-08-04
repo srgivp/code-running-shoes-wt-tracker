@@ -80,12 +80,12 @@ const AliasAssign = () => {
     console.log(state.requestingData);
   };
   //do i need async below?
-  const onLoginSubmit = () => {
+  /*const onLoginSubmit = () => {
     document.getElementById("login").style.display = "none";
     document.getElementById("model").value = model;
     document.getElementById("alias").value = alias;
     document.getElementById("lasting").value = lasting;
-  };
+  };*/
   return (
     <div>
       <div
