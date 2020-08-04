@@ -13,9 +13,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(function(req, res, next) {
   const permittedOrigins = [
     "http://localhost:8080",
-    "https://srgivp.github.io/"
+    "https://srgivp.github.io"
   ];
   const origin = req.headers.origin;
+  console.log(origin);
   if (permittedOrigins.indexOf(origin) > -1) {
     res.setHeader("Access-Control-Allow-Origin", origin);
   }
