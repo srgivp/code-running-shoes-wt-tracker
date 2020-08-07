@@ -3,14 +3,14 @@ const bodyParser = require("body-parser");
 const puppeteer = require("puppeteer");
 //const fs = require("fs");
 
-const searcher = require("./server/find-alias");
+const searcher = require("./find-alias");
 
 const app = express({});
 const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   const permittedOrigins = [
     "http://localhost:8080",
     "https://srgivp.github.io"
