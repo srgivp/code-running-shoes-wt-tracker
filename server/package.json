@@ -4,5 +4,8 @@
     "server": "nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"pnpm server\" \"pnpm start\"",
     "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5"
   }
 }
