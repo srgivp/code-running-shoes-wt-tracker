@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const puppeteer = require("puppeteer");
-const cors=require('cors');
+const cors = require("cors");
 //const fs = require("fs");
 
 const searcher = require("./find-alias");
