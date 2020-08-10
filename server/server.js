@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const puppeteer = require("puppeteer");
+const cors=require('cors');
 //const fs = require("fs");
 
 const searcher = require("./find-alias");
@@ -10,6 +11,7 @@ const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
 app.use(function (req, res, next) {
   const permittedOrigins = [
     "http://localhost:8080",

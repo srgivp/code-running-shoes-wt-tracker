@@ -27,7 +27,8 @@ const receivingData = async (nickName, state) => {
     cookies = "no cookies";
   }
   let response = await fetch(
-    `http://localhost:3000/initialCollecting?alias=${nickName}&cookies=${cookies}`
+    `https://running-shoes-tracker.herokuapp.com/initialCollecting?alias=${nickName}&cookies=${cookies}`
+    //`http://localhost:3000/initialCollecting?alias=${nickName}&cookies=${cookies}`
   );
   if (!response.ok) {
     throw new Error(`HTTP error! Status: ${response.status}`);
