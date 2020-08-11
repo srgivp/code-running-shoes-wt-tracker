@@ -147,7 +147,7 @@ const loggingIn = async (email, password, res) => {
 //with cookies in state
 const initialInfoCollecting = async (inAlias, cookies) => {
   const browser = await puppeteer.launch({
-    headless: false,
+    //headless: false,
     args: ["--shm-size=1gb", "--no-sandbox"]
   });
   const page = await browser.newPage();
