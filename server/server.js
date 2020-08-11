@@ -32,7 +32,7 @@ app.use(function (req, res, next) {
 /*const loggingIn = async (email, password, res) => {
   const browser = await puppeteer.launch({
     headless: false,
-    args: ["--shm-size=1gb"]
+    args: ["--shm-size=1gb", "--no-sandbox"]
   });
   const page = await browser.newPage();
   await page.setViewport({
@@ -71,7 +71,7 @@ app.use(function (req, res, next) {
 const loggingIn = async (email, password, res) => {
   const browser = await puppeteer.launch({
     //headless: false,
-    args: ["--shm-size=1gb"]
+    args: ["--shm-size=1gb", "--no-sandbox"]
   });
   const page = await browser.newPage();
   await page.setViewport({
@@ -112,7 +112,7 @@ const loggingIn = async (email, password, res) => {
 /*const initialInfoCollecting = async inAlias => {
   const browser = await puppeteer.launch({
     headless: false,
-    args: ["--shm-size=1gb"]
+    args: ["--shm-size=1gb", "--no-sandbox"]
   });
   const page = await browser.newPage();
   await page.setViewport({
@@ -148,7 +148,7 @@ const loggingIn = async (email, password, res) => {
 const initialInfoCollecting = async (inAlias, cookies) => {
   const browser = await puppeteer.launch({
     headless: false,
-    args: ["--shm-size=1gb"]
+    args: ["--shm-size=1gb", "--no-sandbox"]
   });
   const page = await browser.newPage();
   await page.setViewport({
