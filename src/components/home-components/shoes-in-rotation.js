@@ -77,7 +77,8 @@ export const receivingDataRetire = async (alias, state) => {
   const cookies = state.currentUser.cookies;
   try {
     let response = await fetch(
-      `http://localhost:3000/initialCollecting?alias=${alias}&cookies=${cookies}`
+      //`http://localhost:3000/initialCollecting?alias=${alias}&cookies=${cookies}`
+      `https://running-shoes-tracker.herokuapp.com/initialCollecting?alias=${alias}&cookies=${cookies}`
     );
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);

@@ -17,7 +17,8 @@ export const Login = props => {
       props.dispatch(requestingData());
       try {
         let response = await fetch(
-          `http://localhost:3000/login?email=${email}&password=${password}`
+          //`http://localhost:3000/login?email=${email}&password=${password}`
+          `https://running-shoes-tracker.herokuapp.com/login?email=${email}&password=${password}`
         );
         if (!response.ok) {
           document.getElementById("email").value = null;
@@ -48,8 +49,7 @@ export const Login = props => {
   return (
     <div id="login">
       <p>Log in to your runner's app account</p>
-      <form /*action="http://localhost:3000/login" method="post" target="_blanc"*/
-      >
+      <form>
         <input
           type="email"
           name="email"
