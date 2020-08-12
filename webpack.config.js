@@ -1,9 +1,9 @@
 const htmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   output: {
-    /*publicPath: "/"*/
+    publicPath: "/"
     /*publicPath: "https://github.com/srgivp/running-shoes-tracker/blob/gh-pages/"*/
-    publicPath: "https://srgivp.github.io/running-shoes-tracker/"
+    /*publicPath: "https://srgivp.github.io/running-shoes-tracker/"*/
   },
   module: {
     rules: [
