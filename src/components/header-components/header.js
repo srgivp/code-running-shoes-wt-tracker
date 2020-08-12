@@ -24,10 +24,10 @@ const Header = () => {
       <h2>{userName} </h2>
       <h1>Watch Your Shoes!!!</h1>
       <ul>
-        <Link to="/running-shoes-tracker/">Rotation</Link>
-        <Link to="/running-shoes-tracker/model">Model</Link>
-        <Link to="/running-shoes-tracker/substitutes">Substitutes</Link>
-        <Link to="/running-shoes-tracker/written-off">Written-off</Link>
+        <Link to="/">Rotation</Link>
+        <Link to="/model">Model</Link>
+        <Link to="/substitutes">Substitutes</Link>
+        <Link to="/written-off">Written-off</Link>
       </ul>
       <InitialLogin
         onClick={e => {

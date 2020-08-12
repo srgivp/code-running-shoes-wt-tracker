@@ -27,18 +27,10 @@ const App = () => {
       <NavBar />
       <Header />
       <Switch>
-        <Route path="/running-shoes-tracker/" exact component={Home} />
-        <Route path="/running-shoes-tracker/model" exact component={Model} />
-        <Route
-          path="/running-shoes-tracker/substitutes"
-          exact
-          component={Substitutes}
-        />
-        <Route
-          path="/running-shoes-tracker/written-off"
-          exact
-          component={WrittenOff}
-        />
+        <Route path="/" exact component={Home} />
+        <Route path="/model" exact component={Model} />
+        <Route path="/substitutes" exact component={Substitutes} />
+        <Route path="/written-off" exact component={WrittenOff} />
       </Switch>
       <div id="below-root">
         <p id="attribution">
