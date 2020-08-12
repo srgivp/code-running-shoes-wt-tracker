@@ -222,6 +222,13 @@ app.get("/login", async (req, res) => {
   }
 });
 
+/*app.get("/*", function (req, res) {
+  console.log("readressing");
+  res.sendFile(
+    "D:/My docs/my docs/tech/projects/200624-running-shoes-wear-and-tear-tracker/dist/index.html"
+  );
+});*/
+
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
 });
