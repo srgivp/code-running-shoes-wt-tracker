@@ -1,7 +1,7 @@
 const htmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   output: {
-    publicPath: "/"
+    publicPath: "/running-shoes-tracker/"
     /*publicPath: "https://github.com/srgivp/running-shoes-tracker/blob/gh-pages/"*/
     /*publicPath: "https://srgivp.github.io/running-shoes-tracker/"*/
   },
