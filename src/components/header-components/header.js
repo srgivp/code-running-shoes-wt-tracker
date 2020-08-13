@@ -24,7 +24,7 @@ const Header = () => {
       <h2>{userName} </h2>
       <h1>Watch Your Shoes!!!</h1>
       <ul>
-        <Link to={`${process.env.PUBLIC_URL}/`}>Rotation</Link>
+        <Link to={`${process.env.PUBLIC_URL}/`}>{process.env.PUBLIC_URL}</Link>
         <Link to={`${process.env.PUBLIC_URL}/model`}>Model</Link>
         <Link to={`${process.env.PUBLIC_URL}/substitutes`}>Substitutes</Link>
         <Link to={`${process.env.PUBLIC_URL}/written-off`}>Written-off</Link>

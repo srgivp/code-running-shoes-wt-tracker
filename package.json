@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open",
-    "build": "webpack --mode production",
+    "start": "webpack-dev-server --env.PUBLIC_URL='' --mode development --open",
+    "build": "webpack --env.PUBLIC_URL='/running-shoes-tracker' --mode production",
     "server": "nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"pnpm server\" \"pnpm start\"",
     "test": "echo \"Error: no test specified\" && exit 1"
