@@ -24,10 +24,10 @@ const Header = () => {
       <h2>{userName} </h2>
       <h1>Watch Your Shoes!!!</h1>
       <ul>
-        <Link to="/">Rotation</Link>
-        <Link to="/model">Model</Link>
-        <Link to="/substitutes">Substitutes</Link>
-        <Link to="/written-off">Written-off</Link>
+        <Link to={`${process.env.PUBLIC_URL}/`}>Rotation</Link>
+        <Link to={`${process.env.PUBLIC_URL}/model`}>Model</Link>
+        <Link to={`${process.env.PUBLIC_URL}/substitutes`}>Substitutes</Link>
+        <Link to={`${process.env.PUBLIC_URL}/written-off`}>Written-off</Link>
       </ul>
       <InitialLogin
         onClick={e => {
