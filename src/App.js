@@ -19,7 +19,7 @@ const App = () => {
     }
   }, [state.requestingData]);
   return (
-    <Router /*basename={process.env.PUBLIC_URL}*/>
+    <Router basename={process.env.PUBLIC_URL}>
       <div>
         <i id="spinner" className="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
         <span className="sr-only">Loading...</span>
