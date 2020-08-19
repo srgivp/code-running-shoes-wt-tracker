@@ -24,10 +24,7 @@ export const loginAction = data => {
   };
 };
 export const reversedDate = incomingDate => {
-  return incomingDate
-    .split(".")
-    .reverse()
-    .join(".");
+  return incomingDate.split(".").reverse().join(".");
 };
 export const setToRotation = scrapedInfo => {
   const mileageString = scrapedInfo.mileage;
@@ -38,6 +35,8 @@ export const setToRotation = scrapedInfo => {
   const alias = document.getElementById("alias").value;
   const lasts = document.getElementById("lasting").value;
   const date = Date.parse(reversedDate(scrapedInfo.startingDate));
+  const latestRunningDate = Date.parse(reversedDate(scrapedInfo.latestDate));
+  const latestMoveDate = Date.parse(reversedDate(scrapedInfo.latestMoveDate));
   return {
     type: SET_TO_ROTATION,
     data: {
@@ -45,6 +44,8 @@ export const setToRotation = scrapedInfo => {
       model: `${model}`,
       lasts: `${lasts}`,
       date: `${date}`,
+      latestRunningDate: `${latestRunningDate}`,
+      latestMoveDate: `${latestMoveDate}`,
       actualMileage: `${actualMileage}`,
       retired: "false"
     }

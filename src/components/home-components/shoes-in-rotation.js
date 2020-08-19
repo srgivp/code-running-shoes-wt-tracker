@@ -1,36 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-//import { setIntervalAsync } from "set-interval-async/dynamic";
-//import { clearIntervalAsync } from "set-interval-async";
 import deleteItem from "../../actions/delete-item";
 import retireItemAction from "../../actions/retire-item-action";
 import "./home.scss";
 import { requestingData, receivedData } from "../../actions/setToRotation";
-//import { actualizer } from "./actualizer";
 import actualizeAction from "../../actions/actualize-action";
 
+//definite shoes component
 const Sneakers = props => {
-  const [daysInRotation, setDaysInRotation] = useState(
+  //if to count till the actual date, not a latest running day
+  /*const [daysInRotation, setDaysInRotation] = useState(
     Math.floor((Date.now() - props.date) / 86400000)
   );
   setInterval(() => {
-    console.log("daysInRotation", daysInRotation);
     setDaysInRotation(Math.floor((Date.now() - props.date) / 86400000));
-  }, 86400000);
-  const colorStyling = () => {
-    const km = Math.floor(props.lasts - props.actualMileage);
-    if (km < 0) {
-      return "red";
-    } else {
-      return "initial";
-    }
-  };
-  const titleOnDistanceExceeding = () => {
-    const km = Math.floor(props.lasts - props.actualMileage);
-    if (km < 0) {
-      return "Maximum forecasted distance of this shoes is already exceeded";
-    }
-  };
+  }, 86400000);*/
+
+  //case to the latest running date
+  const daysInRotation = (props.latestRunningDate - props.date) / 86400000;
   const daysToWriteOff = () => {
     const days = Math.floor(
       (daysInRotation / props.actualMileage) *
@@ -40,6 +27,26 @@ const Sneakers = props => {
       return "exceeded";
     } else {
       return days;
+    }
+  };
+  const colorStyling = () => {
+    const km = Math.floor(props.lasts - props.actualMileage);
+    const daysToRetire = daysToWriteOff();
+    if (daysToRetire < 60 && daysToRetire > 0) {
+      return "orange";
+    } else if (km < 0) {
+      return "red";
+    } else {
+      return "initial";
+    }
+  };
+  const titleOnDistanceExceeding = () => {
+    const km = Math.floor(props.lasts - props.actualMileage);
+    const daysToRetire = daysToWriteOff();
+    if (daysToRetire < 60 && daysToRetire > 0) {
+      return "It's time to find a substitute to this pair. Need suggestions?";
+    } else if (km < 0) {
+      return "Maximum forecasted distance of this shoes is already exceeded";
     }
   };
   return (
@@ -55,7 +62,9 @@ const Sneakers = props => {
           <div className="btn retire">write off</div>
         </div>
       </div>
-      <div className="col">{daysInRotation}</div>
+      <div className="col">
+        {Math.floor((props.latestRunningDate - props.date) / 86400000)}
+      </div>
       <div className="col">{props.actualMileage}</div>
       <div className="col" style={{ color: `${colorStyling()}` }}>
         {Math.floor(props.lasts - props.actualMileage)}
@@ -77,8 +86,7 @@ export const receivingDataRetire = async (alias, state) => {
   const cookies = state.currentUser.cookies;
   try {
     let response = await fetch(
-      //`http://localhost:3000/initialCollecting?alias=${alias}&cookies=${cookies}`
-      `https://running-shoes-tracker.herokuapp.com/initialCollecting?alias=${alias}&cookies=${cookies}`
+      `${process.env.SERVER_URL}/initialCollecting?alias=${alias}&cookies=${cookies}`
     );
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -107,7 +115,7 @@ const ShoesRotating = () => {
     let alias;
     if (targetClass === "btn retire") {
       alias = targetId;
-      console.log(alias);
+      //console.log(alias);
 
       dispatch(requestingData());
       try {
@@ -142,11 +150,12 @@ const ShoesRotating = () => {
             onClick={async e => {
               const btnTargetClass = e.target.className;
               const btnCurrentTargetId = e.currentTarget.id;
-              console.log(btnCurrentTargetId, btnTargetClass);
+              //console.log(btnCurrentTargetId, btnTargetClass);
               await onClickRetire(btnTargetClass, btnCurrentTargetId, state);
               dispatch(deleteItem(btnTargetClass, btnCurrentTargetId));
             }}
             date={item.date}
+            latestRunningDate={item.latestRunningDate}
           />
         );
       }
@@ -160,8 +169,8 @@ const ShoesRotating = () => {
     return "There is no shoes set to rotation yet";
   }
 };
-//delete it in separate file
 //consolidates (through receivingDataRetire) info on all sneakers of currentUser
+//?to change it to server works in one session with array of arguments?
 const actualizer = async (stateShoes, state) => {
   let scrapedInfo = [];
   for (let item of stateShoes) {
@@ -170,9 +179,9 @@ const actualizer = async (stateShoes, state) => {
       return;
     } else {
       scrapedInfoElem.alias = item.alias;
-      console.log("scrapedInfoElem", scrapedInfoElem);
+      //console.log("scrapedInfoElem", scrapedInfoElem);
       scrapedInfo.push(scrapedInfoElem);
-      console.log("scrapedInfo from actualizer", scrapedInfo);
+      //console.log("scrapedInfo from actualizer", scrapedInfo);
     }
   }
   return scrapedInfo;

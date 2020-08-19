@@ -27,8 +27,7 @@ const receivingData = async (nickName, state) => {
     cookies = "no cookies";
   }
   let response = await fetch(
-    `https://running-shoes-tracker.herokuapp.com/initialCollecting?alias=${nickName}&cookies=${cookies}`
-    //`http://localhost:3000/initialCollecting?alias=${nickName}&cookies=${cookies}`
+    `${process.env.SERVER_URL}/initialCollecting?alias=${nickName}&cookies=${cookies}`
   );
   if (!response.ok) {
     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -51,7 +50,7 @@ const receivingData = async (nickName, state) => {
       alias = null;
       lasting = basicLasting;
       let scrapedInfo = response;
-      console.log(scrapedInfo);
+      //console.log(scrapedInfo);
       return scrapedInfo;
     }
   }
@@ -72,21 +71,12 @@ const AliasAssign = () => {
     const scrapedInfo = await receivingData(alias, state);
     if (!scrapedInfo) {
       dispatch(receivedData());
-      //console.log(state.requestingData);
       return;
     } else {
       dispatch(setToRotation(scrapedInfo));
       dispatch(receivedData());
     }
-    console.log(state.requestingData);
   };
-  //do i need async below?
-  /*const onLoginSubmit = () => {
-    document.getElementById("login").style.display = "none";
-    document.getElementById("model").value = model;
-    document.getElementById("alias").value = alias;
-    document.getElementById("lasting").value = lasting;
-  };*/
   return (
     <div>
       <div
@@ -102,11 +92,11 @@ const AliasAssign = () => {
         state={state}
         model={model}
         alias={alias}
-        lasting={lasting} /*onClick={onLoginSubmit*/
+        lasting={lasting}
       />
       <div id="setting-to-rotation">
         <form>
-          <label>Shoe's alias</label>
+          <label>Shoes' alias</label>
           <input
             type="text"
             id="alias"

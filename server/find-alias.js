@@ -1,6 +1,6 @@
 const findAlias = async (page, inAlias) => {
-  console.log("find alias started");
-  await page.waitForSelector("#tagcloud > ul > li");
+  //console.log("find alias started");
+  await page.waitForSelector("#tagcloud > ul > li", 1000);
   let aliasContainers = await page.evaluate(() => {
     const aliasList = document.querySelectorAll(
       "#tagcloud > ul > li>div>a>span"
@@ -10,87 +10,62 @@ const findAlias = async (page, inAlias) => {
     return aliasText;
   });
   const aliasLength = aliasContainers.length;
-  console.log(aliasLength, inAlias, aliasContainers);
+  //console.log(aliasLength, inAlias, aliasContainers);
   for (let i = 0; i < aliasLength; i++) {
     let alias = aliasContainers[i];
-    console.log("evaluated alias", alias);
-    console.log(
+    //console.log("evaluated alias", alias);
+    /*console.log(
       alias == inAlias,
       typeof alias,
       typeof inAlias,
       alias.length,
       inAlias.length
-    );
+    );*/
     if (alias === inAlias) {
       await page.click(
         `#tagcloud > ul > li > div:nth-child(${i + 1}) > a > span`
       );
-      await page.waitForSelector("#chart2 > h1");
+      await page.waitForSelector("#chart2 > h1", 1000);
       let scrapedData = {};
       scrapedData.mileage = await page.evaluate(() => {
         return document.querySelector("#chart2 > h1").innerText;
       });
-      console.log(scrapedData.mileage);
-      /*try {
-        await page.waitForSelector(
-          "#selected_moves>ul>li:first-child>div>div.media-text>ul>li>div:nth-child(1)",
-          10000
-        );
-        scrapedData.latestDate = await page.evaluate(() => {
-          return document.querySelector(
-            "#selected_moves>ul>li:first-child>div>div.media-text>ul>li>div:nth-child(1)"
-          ).innerText;
-        });
-        console.log(scrapedData.latestDate);
-        await page.waitFor(3000);
-        await page.click("#selected_moves > div.paging > div > a:last-child"); //last page click
-        await page.waitFor(3000);
-        await page.waitForSelector(
-          "#selected_moves>ul>li:last-child>div>div.media-text>ul>li>div:nth-child(1)",
-          10000
-        );
-        scrapedData.startingDate = await page.evaluate(() => {
-          return document.querySelector(
-            "#selected_moves>ul>li:last-child>div>div.media-text>ul>li>div:nth-child(1)"
-          ).innerText;
-        });
-      } catch (ex) {*/
+      //console.log(scrapedData.mileage);
       try {
-        try {
-          await page.click(
-            "#content > header:nth-child(7) > ul > li > div.fl0 > div"
-          ); // moves click
-          await page.waitFor(3000);
-          console.log("moves pushed");
-        } catch (ex) {
-          await page.click(
-            `#tagcloud > ul > li > div:nth-child(${i + 1}) > a > span`
-          );
-          await page.click(
-            "#content > header:nth-child(7) > ul > li > div.fl0 > div"
-          ); // moves click
-          await page.waitFor(3000);
-          console.log("moves pushed second");
-        }
+        await page.click(
+          "#content > header:nth-child(7) > ul > li > div.fl0 > div"
+        ); // moves click
+        await page.waitFor(300);
+        //console.log("moves pushed");
+      } catch (ex) {
+        await page.click(
+          `#tagcloud > ul > li > div:nth-child(${i + 1}) > a > span`
+        );
+        await page.click(
+          "#content > header:nth-child(7) > ul > li > div.fl0 > div"
+        ); // moves click
+        await page.waitFor(300);
+        //console.log("moves pushed second");
+      }
 
-        //define if latest move is running
-        const activityKind = async i => {
+      //define if latest move is running
+      /*const activityKind = async i => {
           let selector = `#selected_moves > ul > li:nth-child(${i}) > div > div.media-img.size-36 > i`;
           //await page.waitForSelector(selector, 10000);
-          console.log(selector);
+          //console.log(selector);
           const activity = await page.evaluate(selector => {
             let move = document.querySelector(selector).title.toLowerCase();
             return move;
           }, selector);
-          await page.waitFor(3000);
-          console.log(activity);
+          await page.waitFor(300);
+          //console.log(activity);
           return activity;
-        };
+        };*/
 
-        console.log("before moves list");
-        let movesOnPage = async () => {
+      //console.log("before moves list");
+      /*let movesOnPage = async () => {
           await page.waitForSelector("#selected_moves > ul", 10000);
-          console.log("moves liast started");
+          //console.log("moves list started");
           const movesArr = await page.evaluate(() => {
             let movesList = document.querySelectorAll(
               "#selected_moves > ul > li"
@@ -98,11 +73,11 @@ const findAlias = async (page, inAlias) => {
             const arr = [...movesList];
             return arr;
           });
-          console.log("movesOnPage", movesArr.length);
+          //console.log("movesOnPage", movesArr.length);
           return movesArr.length;
-        };
+        };*/
 
-        let pagesOfMoves;
+      /*let pagesOfMoves;
         try {
           pagesOfMoves = await page.evaluate(() => {
             return parseInt(
@@ -113,17 +88,18 @@ const findAlias = async (page, inAlias) => {
           });
         } catch {
           pagesOfMoves = 1;
-        }
-        console.log("pagesOfMoves", pagesOfMoves);
+        }*/
+      //console.log("pagesOfMoves", pagesOfMoves);
 
-        scrapedData.latestMoveDate = await page.evaluate(() => {
-          return document.querySelector(
-            `#selected_moves>ul>li:nth-child(1)>div>div.media-text>ul>li>div:nth-child(1)`
-          ).innerText;
-        });
-        console.log("movedate", scrapedData.latestMoveDate);
+      scrapedData.latestMoveDate = await page.evaluate(() => {
+        return document.querySelector(
+          `#selected_moves>ul>li:nth-child(1)>div>div.media-text>ul>li>div:nth-child(1)`
+        ).innerText;
+      });
+      //console.log("movedate", scrapedData.latestMoveDate);
 
-        const latestRunningIdentifier = async () => {
+      //scraps latest running date parsing move by move
+      /*const latestRunningIdentifier = async () => {
           for (let i = 1; i < pagesOfMoves + 1; i++) {
             if (pagesOfMoves > 1) {
               await page.click(
@@ -149,50 +125,58 @@ const findAlias = async (page, inAlias) => {
               }
             }
           }
-        };
-        await latestRunningIdentifier();
-        //latest running move defined
+        };*/
 
-        await page.waitFor(3000);
+      const latestRunningIdentifier = async () => {
+        await page.click("#calendarTools > ul > li > a > i");
+        await page.click(
+          "#calendarTools > ul > li > ul > li.row-flex.row-flex--middle > div:nth-child(2) > a"
+        );
+        await page.click(
+          "#calendarTools > ul > li > ul > li.row-margin > ul > li > div:nth-child(1) > a > i"
+        );
+        scrapedData.latestDate = await page.evaluate(() => {
+          return document.querySelector(
+            `#selected_moves>ul>li:nth-child(1)>div>div.media-text>ul>li>div:nth-child(1)`
+          ).innerText;
+        });
+        return;
+      };
+      await latestRunningIdentifier();
+      //latest running move date defined
+
+      /*(await page.waitFor(300);
         await page.waitForSelector(
           "#selected_moves > div.paging > div > a:last-child",
-          10000
-        );
+          1000
+        );*/
+      try {
         await page.click("#selected_moves > div.paging > div > a:last-child");
-        await page.waitFor(3000);
-        await page.waitForSelector(
-          "#selected_moves>ul>li:last-child>div>div.media-text>ul>li>div:nth-child(1)",
-          10000
-        );
+      } catch {
         scrapedData.startingDate = await page.evaluate(() => {
           return document.querySelector(
             "#selected_moves>ul>li:last-child>div>div.media-text>ul>li>div:nth-child(1)"
           ).innerText;
         });
-      } catch (ex) {
-        /*await page.waitForSelector(
-            "#selected_moves>ul>li:first-child>div>div.media-text>ul>li>div:nth-child(1)",
-            10000
-          );
-          scrapedData.latestDate = await page.evaluate(() => {
-            return document.querySelector(
-              "#selected_moves>ul>li:first-child>div>div.media-text>ul>li>div:nth-child(1)"
-            ).innerText;
-          });
-          console.log(scrapedData.latestDate);
-          await page.waitFor(3000);*/
-        scrapedData.startingDate = await page.evaluate(() => {
-          return document.querySelector(
-            "#selected_moves>ul>li:last-child>div>div.media-text>ul>li>div:nth-child(1)"
-          ).innerText;
-        });
+
+        return scrapedData;
       }
-      /*}*/
-      console.log(scrapedData.startingDate);
+
+      await page.waitFor(300);
+      await page.waitForSelector(
+        "#selected_moves>ul>li:last-child>div>div.media-text>ul>li>div:nth-child(1)",
+        1000
+      );
+      scrapedData.startingDate = await page.evaluate(() => {
+        return document.querySelector(
+          "#selected_moves>ul>li:last-child>div>div.media-text>ul>li>div:nth-child(1)"
+        ).innerText;
+      });
+      //console.log(scrapedData.startingDate);
       return scrapedData;
     }
   }
-  console.log("oops");
+  //console.log("oops");
   return "there is no pair with this alias in your rotation";
 };
 module.exports.findAlias = findAlias;

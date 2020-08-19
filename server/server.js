@@ -18,7 +18,6 @@ app.use(function (req, res, next) {
     "https://srgivp.github.io"
   ];
   const origin = req.headers.origin;
-  console.log(origin);
   if (permittedOrigins.indexOf(origin) > -1) {
     res.setHeader("Access-Control-Allow-Origin", origin);
   }
@@ -81,15 +80,15 @@ const loggingIn = async (email, password, res) => {
   });
   const link = "http://www.movescount.com/";
   await page.goto(link);
-  await page.waitForSelector("a[data-reactid='25']");
+  await page.waitForSelector("a[data-reactid='25']", 1000);
   await page.click("a[data-reactid='25']");
-  await page.waitForSelector("#splEmail");
+  await page.waitForSelector("#splEmail", 1000);
   await page.type("#splEmail", email);
   await page.type("#splPassword", password);
   await page.click("#splLoginButton");
-  await page.waitForSelector("a[data-reactid='99']");
+  await page.waitForSelector("a[data-reactid='99']", 1000);
   await page.goto("http://www.movescount.com/summary#navigation=tagcloud");
-  await page.waitForSelector("a[data-reactid='99']");
+  await page.waitForSelector("a[data-reactid='99']", 1000);
   //res.send("You are logged in now. Continue with setting the pair to rotation");
   const cookiesObject = await page.cookies();
   /*fs.writeFileSync(
@@ -104,7 +103,6 @@ const loggingIn = async (email, password, res) => {
     }
   );*/
   const cookies = JSON.stringify(cookiesObject);
-  //res.set("Content-Type", "text/html");
   res.send(cookies);
   browser.close;
 };
@@ -138,7 +136,7 @@ const loggingIn = async (email, password, res) => {
     browser.close();
     return scrapedInfo;
   } catch (ex) {
-    await page.waitForSelector("#splLoginButton");
+    await page.waitForSelector("#splLoginButton", 1000);
     await browser.close();
     return "login";
   }
@@ -166,7 +164,6 @@ const initialInfoCollecting = async (inAlias, cookies) => {
           ...cookie,
           ...{ sameSite: "none" /*, secure: true */ }
         };
-        console.log("corrCookie: ", correctedCookie);
         await page.setCookie(correctedCookie);
       }
       console.log("Session has been loaded in the browser");
@@ -178,8 +175,8 @@ const initialInfoCollecting = async (inAlias, cookies) => {
     const scrapedInfo = await searcher.findAlias(page, inAlias);
     browser.close();
     return scrapedInfo;
-  } catch (ex) {
-    await page.waitForSelector("#splLoginButton");
+  } catch {
+    await page.waitForSelector("#splLoginButton", 1000);
     await browser.close();
     return "login";
   }
@@ -221,13 +218,6 @@ app.get("/login", async (req, res) => {
     next(err);
   }
 });
-
-/*app.get("/*", function (req, res) {
-  console.log("readressing");
-  res.sendFile(
-    "D:/My docs/my docs/tech/projects/200624-running-shoes-wear-and-tear-tracker/dist/index.html"
-  );
-});*/
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`);

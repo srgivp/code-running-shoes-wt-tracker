@@ -5,15 +5,10 @@ import {
   PUT_BACK,
   ACTUALIZE
 } from "../actions/action-types";
-const shoesReducer = (state = [], action) => {
-  console.log("State from reducer", state);
+const shoesReducer = (basicState = [], action) => {
+  const state = JSON.parse(JSON.stringify(basicState));
   switch (action.type) {
     case SET_TO_ROTATION:
-      /*const checkAlias = item => {
-        return item.alias === action.data.alias;
-      };*/
-
-      //if (state.some(checkAlias)) {
       let model;
       for (let item of state) {
         if (item.alias === action.data.alias) {
@@ -24,7 +19,6 @@ const shoesReducer = (state = [], action) => {
           return state;
         }
       }
-      //}
 
       return [...state, action.data];
 
@@ -45,13 +39,9 @@ const shoesReducer = (state = [], action) => {
       let retiredPair;
       let initialState = [...state];
       for (let item of initialState) {
-        console.log(item.alias, action.data.alias);
         if (item.alias === action.data.alias) {
-          console.log("yeap");
           retiredPair = { ...item };
           retiredPair = { ...retiredPair, ...action.data };
-          console.log("retiredPair", retiredPair);
-          console.log(initialState.indexOf(item));
           initialState.splice(initialState.indexOf(item), 1, retiredPair);
           return initialState;
         }
@@ -77,6 +67,8 @@ const shoesReducer = (state = [], action) => {
         if (item.alias === action.data.alias) {
           actualizingPair = { ...item };
           actualizingPair.actualMileage = action.data.actualMileage;
+          actualizingPair.latestRunningDate = action.data.latestRunningDate;
+          actualizingPair.latestMoveDate = action.data.latestMoveDate;
           actualizedState.splice(
             actualizedState.indexOf(item),
             1,

@@ -29,6 +29,26 @@
   background-color: rgb(231, 229, 227);
   border: solid 0.5px rgb(179, 102, 179);
 }*/
+
+#login {
+  width: 50%;
+  font-size: 1rem;
+  font-weight: normal;
+  p {
+    margin: 1% 1% 0 2%;
+  }
+  form {
+    font-size: 1rem;
+    input {
+      margin: 0.5%;
+      width: 47%;
+    }
+    input[type="submit"] {
+      width: 30%;
+    }
+  }
+}
+
 #rotation-page {
   background-color: rgb(233, 227, 227);
   form {

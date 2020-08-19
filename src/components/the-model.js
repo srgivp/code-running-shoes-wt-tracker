@@ -5,7 +5,6 @@ const Model = () => {
   useEffect(() => {
     if (!state.currentUser.name) {
       document.querySelector(".main-info-container").style.display = "none";
-      //document.querySelector("#initial-login").style.display = "block";
       document.querySelector("header>ul").style.display = "none";
     } else {
       document.querySelector(".main-info-container").style.display = "block";

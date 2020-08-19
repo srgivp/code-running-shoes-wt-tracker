@@ -22,7 +22,7 @@ export const onClickInitialLogin = (e, dispatch, state) => {
         return;
       } else {
         let data = item;
-        console.log(data);
+        //console.log(data);
         dispatch(initialLoginAction(data));
         document.querySelector(
           '#initial-login>form>input[name="name"]'
@@ -76,7 +76,6 @@ export const onClickCreate = (e, dispatch, state) => {
 
 export const onClickDelete = (e, dispatch, state) => {
   e.preventDefault();
-  console.log(state);
   let name = document.querySelector('#initial-login>form>input[name="name"]')
     .value;
   let password = document.querySelector(
@@ -85,16 +84,32 @@ export const onClickDelete = (e, dispatch, state) => {
   for (let item of state.users) {
     if (item.name === name) {
       if (item.password === password) {
-        const data = { name: item.name, password: item.password };
-        dispatch(deleteAccountAction(data));
-        document.querySelector(
-          '#initial-login>form>input[name="name"]'
-        ).value = null;
-        document.querySelector(
-          '#initial-login>form>input[name="password"]'
-        ).value = null;
-        alert(`Account with user name "${data.name}" was successfully deleted`);
-        return;
+        if (
+          confirm(
+            `Are you sure you want to delete account with the name "${name}"?`
+          )
+        ) {
+          const data = { name: item.name, password: item.password };
+          dispatch(deleteAccountAction(data));
+          document.querySelector(
+            '#initial-login>form>input[name="name"]'
+          ).value = null;
+          document.querySelector(
+            '#initial-login>form>input[name="password"]'
+          ).value = null;
+          alert(
+            `Account with user name "${data.name}" was successfully deleted`
+          );
+          return;
+        } else {
+          document.querySelector(
+            '#initial-login>form>input[name="name"]'
+          ).value = null;
+          document.querySelector(
+            '#initial-login>form>input[name="password"]'
+          ).value = null;
+          return;
+        }
       } else {
         alert("Wrong password!");
         document.querySelector(
@@ -112,6 +127,10 @@ export const onClickDelete = (e, dispatch, state) => {
 };
 
 const onClickBack = () => {
+  document.querySelector('#initial-login>form>input[name="name"]').value = null;
+  document.querySelector(
+    '#initial-login>form>input[name="password"]'
+  ).value = null;
   //sign in btn
   document.querySelector(
     "#initial-login > form > input[type=submit]:nth-child(3)"

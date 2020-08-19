@@ -8,7 +8,6 @@ dependencies:
   react-router-dom: 5.2.0_react@16.13.1
   redux: 4.0.5
   redux-thunk: 2.3.0
-  set-interval-async: 1.0.33
   url-loader: 4.1.0_file-loader@6.0.0+webpack@4.43.0
 devDependencies:
   '@babel/core': 7.10.3
@@ -978,12 +977,6 @@ packages:
       regenerator-runtime: 0.13.5
     resolution:
       integrity: sha512-RzGO0RLSdokm9Ipe/YD+7ww8X2Ro79qiXZF3HU9ljrM+qnJmH1Vqth+hbiQZy761LnMJTMitHDuKVYTk3k4dLw==
-  /@babel/runtime/7.5.0:
-    dependencies:
-      regenerator-runtime: 0.13.5
-    dev: false
-    resolution:
-      integrity: sha512-2xsuyZ0R0RBFwjgae5NpXk8FcfH4qovj5cEM5VEeB7KXnKqzaisIu2HSV/mCEISolJJuR4wkViUGYujA8MH9tw==
   /@babel/template/7.10.3:
     dependencies:
       '@babel/code-frame': 7.10.3
@@ -5503,12 +5496,6 @@ packages:
     dev: true
     resolution:
       integrity: sha1-BF+XgtARrppoA93TgrJDkrPYkPc=
-  /set-interval-async/1.0.33:
-    dependencies:
-      '@babel/runtime': 7.5.0
-    dev: false
-    resolution:
-      integrity: sha512-cKV9rLl707sWirvrZEL8XxyOxaPowueFRYKruRRj2cKHRd+M0JGg6IPqoUZVXkvaOZxvM3ulqDdNJuG5MmngxA==
   /set-value/2.0.1:
     dependencies:
       extend-shallow: 2.0.1
@@ -6569,7 +6556,6 @@ specifiers:
   redux: ^4.0.5
   redux-thunk: ^2.3.0
   sass-loader: ^9.0.2
-  set-interval-async: 1.0.33
   style-loader: ^1.2.1
   url-loader: ^4.1.0
   webpack: ^4.43.0

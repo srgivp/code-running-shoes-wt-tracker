@@ -8,14 +8,14 @@ module.exports = env => {
         filename: "index.html"
       }),
       new webpack.DefinePlugin({
-        "process.env.PUBLIC_URL": JSON.stringify(env.PUBLIC_URL)
+        "process.env.PUBLIC_URL": JSON.stringify(env.PUBLIC_URL),
+        "process.env.SERVER_URL": JSON.stringify(env.SERVER_URL)
+        //"process.env.SERVER_URL": "https://running-shoes-tracker.herokuapp.com"
+        //"process.env.SERVER_URL": JSON.stringify("http://localhost:3000")
       })
     ],
     output: {
       publicPath: process.env.PUBLIC_URL
-      //publicPath: "/running-shoes-tracker/"
-      /*publicPath: "https://github.com/srgivp/running-shoes-tracker/blob/gh-pages/"*/
-      /*publicPath: "https://srgivp.github.io/running-shoes-tracker/"*/
     },
     module: {
       rules: [

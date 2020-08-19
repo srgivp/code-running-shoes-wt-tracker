@@ -5,7 +5,6 @@ const Substitutes = () => {
   useEffect(() => {
     if (!state.currentUser.name) {
       document.querySelector(".main-info-container").style.display = "none";
-      //document.querySelector("#initial-login").style.display = "block";
       document.querySelector("header>ul").style.display = "none";
     } else {
       document.querySelector(".main-info-container").style.display = "block";
@@ -14,7 +13,7 @@ const Substitutes = () => {
     }
   }, [state.currentUser.name]);
   return (
-    <div className="main-info-container">substitutes se aparecen aqui</div>
+    <div className="main-info-container">substitutos se aparecen aqui</div>
   );
 };
 export default Substitutes;

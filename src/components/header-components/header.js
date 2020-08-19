@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   InitialLogin,
   onClickInitialLogin,
@@ -24,7 +24,7 @@ const Header = () => {
       <h2>{userName} </h2>
       <h1>Watch Your Shoes!!!</h1>
       <ul>
-        <Link to="/">{process.env.PUBLIC_URL}</Link>
+        <Link to="/">Rotation</Link>
         <Link to="/model">Model</Link>
         <Link to="/substitutes">Substitutes</Link>
         <Link to="/written-off">Written-off</Link>
