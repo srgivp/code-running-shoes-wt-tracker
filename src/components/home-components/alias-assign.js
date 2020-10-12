@@ -23,12 +23,14 @@ const receivingData = async (nickName, state) => {
   let cookies;
   if (state.currentUser.cookies) {
     cookies = state.currentUser.cookies;
+    cookies = cookies.replace(/%22/g, "\\%22");
   } else {
     cookies = "no cookies";
   }
   let response = await fetch(
     `${process.env.SERVER_URL}/initialCollecting?alias=${nickName}&cookies=${cookies}`
   );
+
   if (!response.ok) {
     throw new Error(`HTTP error! Status: ${response.status}`);
   } else {
@@ -43,6 +45,16 @@ const receivingData = async (nickName, state) => {
       response.answer === "there is no pair with this alias in your rotation"
     ) {
       alert("there is no pair with this alias in your rotation");
+      return;
+    } else if (response.answer === "error") {
+      console.log("error:", response.errorMessage, "error name:", err.name);
+      alert("error, look console for details");
+      return;
+    } else if (response.answer === "can't load") {
+      console.log("error:", response.errorMessage, "error name:", err.name);
+      alert(
+        "Can't load the session in the browser. Probably you're not logged in to your outer running app and your internet speed is to low. See console for details"
+      );
       return;
     }
     {
@@ -68,7 +80,14 @@ const AliasAssign = () => {
 
   const addPair = async alias => {
     dispatch(requestingData());
-    const scrapedInfo = await receivingData(alias, state);
+    let scrapedInfo;
+    try {
+      scrapedInfo = await receivingData(alias, state, dispatch);
+    } catch (err) {
+      alert("Error while fetching from server");
+      console.log("error:", err.name, err.message);
+      dispatch(receivedData);
+    }
     if (!scrapedInfo) {
       dispatch(receivedData());
       return;

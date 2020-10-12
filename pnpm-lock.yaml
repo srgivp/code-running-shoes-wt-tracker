@@ -2,6 +2,7 @@ dependencies:
   body-parser: 1.19.0
   express: 4.17.1
   puppeteer: 4.0.0
+  qs: 6.9.4
   react: 16.13.1
   react-dom: 16.13.1_react@16.13.1
   react-redux: 7.2.0_49f644e2f7de4182503f8b93abece808
@@ -4896,6 +4897,12 @@ packages:
       node: '>=0.6'
     resolution:
       integrity: sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
+  /qs/6.9.4:
+    dev: false
+    engines:
+      node: '>=0.6'
+    resolution:
+      integrity: sha512-A1kFqHekCTM7cz0udomYUoYNWjBebHm/5wzU/XqrBRBNWectVH0QIiN+NEcZ0Dte5hvzHwbr8+XQmguPhJ6WdQ==
   /querystring-es3/0.2.1:
     engines:
       node: '>=0.4.x'
@@ -6549,6 +6556,7 @@ specifiers:
   html-webpack-plugin: ^4.3.0
   node-sass: ^4.14.1
   puppeteer: ^4.0.0
+  qs: ^6.9.4
   react: ^16.13.1
   react-dom: ^16.13.1
   react-redux: ^7.2.0

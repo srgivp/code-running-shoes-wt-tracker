@@ -6,10 +6,6 @@ import "./home-components/home.scss";
 const Home = () => {
   const state = useSelector(state => state);
   useEffect(() => {
-    //console.log("state: ", state);
-  }, []);
-
-  useEffect(() => {
     if (!state.currentUser.name) {
       document.querySelector(".main-info-container").style.display = "none";
       document.querySelector("header>ul").style.display = "none";

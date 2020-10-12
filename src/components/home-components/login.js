@@ -16,7 +16,15 @@ export const Login = props => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       } else {
         response = await response.text();
-        console.log("type of cookies", typeof response);
+      }
+      if (
+        response ===
+        "Login failed. Check out whether login and/or password are correct"
+      ) {
+        alert(response);
+        props.dispatch(receivedData());
+        return;
+      } else {
         props.dispatch(saveCookiesAction(response));
         props.dispatch(receivedData());
         alert(
@@ -33,7 +41,7 @@ export const Login = props => {
       document.getElementById("email").value = null;
       document.getElementById("password").value = null;
       props.dispatch(receivedData());
-      alert("Error:", err);
+      alert("Error with logging in:", err.name, err.message);
     }
   };
   return (

@@ -1,5 +1,4 @@
 import { ACTUALIZE } from "./action-types";
-import { type } from "os";
 import { reversedDate } from "./setToRotation";
 const actualizeAction = (data, alias) => {
   return {

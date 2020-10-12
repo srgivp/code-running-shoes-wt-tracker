@@ -80,10 +80,11 @@ const Sneakers = props => {
   );
 };
 
-//brings info from outer app on distinct pair
+//brings info from an outer app on distinct pair
 export const receivingDataRetire = async (alias, state) => {
   let scrapedInfo;
-  const cookies = state.currentUser.cookies;
+  let cookies = state.currentUser.cookies;
+  cookies = cookies.replace(/%22/g, "\\%22");
   try {
     let response = await fetch(
       `${process.env.SERVER_URL}/initialCollecting?alias=${alias}&cookies=${cookies}`
@@ -95,13 +96,24 @@ export const receivingDataRetire = async (alias, state) => {
       if (response.answer === "login") {
         document.getElementById("login-retire").style.display = "block";
         return;
+      } else if (response.answer === "can't load") {
+        console.log("error:", response.errorMessage, "error name:", err.name);
+        alert(
+          "Can't load the session in the browser. Probably you're not logged in to your outer running app and your internet speed is to low. See console for details"
+        );
+        return;
+      } else if (response.answer === "error") {
+        console.log("error:", response.errorMessage, "error name:", err.name);
+        alert("error, look console for details");
+        return;
       } else {
         scrapedInfo = response;
       }
     }
     return scrapedInfo;
   } catch (err) {
-    alert("The error has ocurred: ", err);
+    alert("An error has ocurred while receiving data from the server");
+    console.log(err.name, err.message);
     return;
   }
 };
@@ -115,7 +127,6 @@ const ShoesRotating = () => {
     let alias;
     if (targetClass === "btn retire") {
       alias = targetId;
-      //console.log(alias);
 
       dispatch(requestingData());
       try {
@@ -150,7 +161,6 @@ const ShoesRotating = () => {
             onClick={async e => {
               const btnTargetClass = e.target.className;
               const btnCurrentTargetId = e.currentTarget.id;
-              //console.log(btnCurrentTargetId, btnTargetClass);
               await onClickRetire(btnTargetClass, btnCurrentTargetId, state);
               dispatch(deleteItem(btnTargetClass, btnCurrentTargetId));
             }}
@@ -179,9 +189,7 @@ const actualizer = async (stateShoes, state) => {
       return;
     } else {
       scrapedInfoElem.alias = item.alias;
-      //console.log("scrapedInfoElem", scrapedInfoElem);
       scrapedInfo.push(scrapedInfoElem);
-      //console.log("scrapedInfo from actualizer", scrapedInfo);
     }
   }
   return scrapedInfo;
@@ -196,7 +204,7 @@ const ShoesInRotation = () => {
     dispatch(requestingData());
     try {
       const scrappedInfo = await actualizer(stateShoes, state);
-      if (scrappedInfo.length > 0) {
+      if (scrappedInfo && scrappedInfo.length > 0) {
         dispatch(receivedData());
         for (let item of scrappedInfo) {
           dispatch(actualizeAction(item, item.alias));
