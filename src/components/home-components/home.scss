@@ -53,12 +53,50 @@
   background-color: rgb(233, 227, 227);
   form {
     margin: 1% 1%;
+    width: fit-content;
+    .labelInputContainer {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 1px;
+    }
     label {
       margin: 0 0.5% 0 1.5%;
+      min-width: 175px;
+    }
+    input {
+      min-width: 250px;
     }
   }
 }
 
 .rotation-grid-container {
   grid-template-columns: 40% 15% 15% 15% 15%;
+}
+
+@media only screen and (max-width: 450px) {
+  #rotation-page {
+    form {
+      .labelInputContainer {
+        font-size: 0.8rem;
+      }
+      label {
+        min-width: 130px;
+      }
+      input {
+        min-width: 200px;
+      }
+    }
+  }
+  #shoes-grid {
+    font-size: 0.8rem;
+    h3 {
+      font-size: 1.3rem;
+    }
+    .header {
+      line-height: 1;
+    }
+    .btn {
+      font-size: 0.8rem;
+    }
+  }
 }

@@ -115,33 +115,39 @@ const AliasAssign = () => {
       />
       <div id="setting-to-rotation">
         <form>
-          <label>Shoes' alias</label>
-          <input
-            type="text"
-            id="alias"
-            name="alias"
-            placeholder="alias from running app"
-            title="Type in the nickname used in your running application"
-            required
-          />
-          <label>Model</label>
-          <input
-            type="text"
-            id="model"
-            name="model"
-            placeholder="Type in model name"
-            title="type in whole model name according to the example: hoka one one challenger atr 5"
-            required
-          />
-          <label>Expected distance, km</label>
-          <input
-            type="text"
-            id="lasting"
-            name="lasting"
-            title="Set forecasted distance in km to removal from the rotation"
-            defaultValue={basicLasting}
-            required
-          />
+          <div className="labelInputContainer">
+            <label>Shoes' alias</label>
+            <input
+              type="text"
+              id="alias"
+              name="alias"
+              placeholder="alias from running app"
+              title="Type in the nickname used in your running application"
+              required
+            />
+          </div>
+          <div className="labelInputContainer">
+            <label>Model</label>
+            <input
+              type="text"
+              id="model"
+              name="model"
+              placeholder="type in model name"
+              title="type in whole model name according to the example: hoka one one challenger atr 5"
+              required
+            />
+          </div>
+          <div className="labelInputContainer">
+            <label>Expected distance, km</label>
+            <input
+              type="text"
+              id="lasting"
+              name="lasting"
+              title="Set forecasted distance in km to removal from the rotation"
+              defaultValue={basicLasting}
+              required
+            />
+          </div>
         </form>
         <div
           className="btn"

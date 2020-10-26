@@ -19,6 +19,7 @@ header {
     font-style: italic;
     font-size: 2rem;
     font-weight: bold;
+    text-align: center;
   }
   ul {
     font-family: serif;
@@ -74,4 +75,18 @@ header ::after {
 #delete-account-button,
 #back-btn {
   display: none;
+}
+
+@media only screen and (max-width: 450px) {
+  header {
+    margin-top: 8%;
+    h2,
+    h1 {
+      font-size: 1.3rem;
+      margin-bottom: 0.1rem;
+    }
+    ul {
+      margin-bottom: 0.3rem;
+    }
+  }
 }

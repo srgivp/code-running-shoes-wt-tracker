@@ -2,6 +2,8 @@ $nav-background-color: rgb(79, 165, 245);
 #nav-bar {
   position: fixed;
   top: 0;
+  right: 0;
+  left: 0;
   display: flex;
   flex-wrap: wrap;
   width: 100%;

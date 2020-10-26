@@ -26,7 +26,7 @@ body {
   margin: 0.1% 0.3%;
   padding: 0 1%;
   color: rgb(136, 130, 130);
-  //border: solid 0.3px grey;
+  border: solid 0.003px grey;
   //background-color: rgb(240, 238, 228);
   &:hover {
     background-color: rgb(185, 213, 236);
@@ -49,6 +49,9 @@ body {
   div {
     height: fit-content;
   }
+  .col {
+    padding: 1px;
+  }
 }
 
 .header {
@@ -57,6 +60,7 @@ body {
   line-height: 1.5;
   background-color: $nav-background-color;
   padding: 1% 0.3%;
+  text-align: center;
 }
 .col-model {
   p {
@@ -121,4 +125,33 @@ body {
   bottom: 0;
   left: 0;
   z-index: 10;
+}
+
+@media only screen and (max-width: 450px) {
+  #rotation-page {
+    form {
+      .labelInputContainer {
+        font-size: 0.8rem;
+      }
+      label {
+        min-width: 130px;
+      }
+      input {
+        min-width: 200px;
+      }
+    }
+  }
+  #shoes-grid,
+  #shoes-grid-retired {
+    font-size: 0.8rem;
+    h3 {
+      font-size: 1.3rem;
+    }
+    .header {
+      line-height: 1;
+    }
+    .btn {
+      font-size: 0.8rem;
+    }
+  }
 }
