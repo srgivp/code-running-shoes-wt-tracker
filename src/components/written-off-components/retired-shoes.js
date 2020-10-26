@@ -16,7 +16,7 @@ const RetiredPair = props => {
         <p>{props.model}</p>
         <div className="row">
           <div className="btn delete-item">delete</div>
-          <div className="btn back-to-rotation">put back to rotation</div>
+          <div className="btn back-to-rotation">put back</div>
         </div>
       </div>
       <div className="col" title="Distance done up to the date of writing off">

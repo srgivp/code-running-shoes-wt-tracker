@@ -39,6 +39,16 @@ body {
   flex-wrap: wrap;
 }
 
+#shoes-grid,
+#shoes-grid-retired {
+  line-height: 1.1;
+  .col-model {
+    p {
+      margin-bottom: 3px;
+    }
+  }
+}
+
 .grid-container {
   display: grid;
   justify-content: center;
@@ -143,12 +153,18 @@ body {
   }
   #shoes-grid,
   #shoes-grid-retired {
+    line-height: 1;
     font-size: 0.8rem;
     h3 {
       font-size: 1.3rem;
     }
     .header {
       line-height: 1;
+    }
+    .col-model {
+      p {
+        margin-bottom: 1.5px;
+      }
     }
     .btn {
       font-size: 0.8rem;
